@@ -44,4 +44,5 @@ dependencies {
     implementation "androidx.room:room-guava:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
     implementation "androidx.room:room-paging:2.5.0-alpha01"
+    implementation "com.android.volley:volley:1.2.1"
 }
