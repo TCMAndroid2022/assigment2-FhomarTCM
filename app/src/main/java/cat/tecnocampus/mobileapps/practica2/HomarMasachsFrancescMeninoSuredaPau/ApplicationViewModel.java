@@ -29,7 +29,7 @@ public class ApplicationViewModel extends AndroidViewModel {
         return repository.getGameByNickname(nickname);
     }
     LiveData<List<Player>> getAllPlayers(){return allPlayers;}
-    LiveData<List<Player>> getPlayerByNickname(String nickname){
+    LiveData<Player> getPlayerByNickname(String nickname){
         return repository.getPlayerByNickname(nickname);
     }
 

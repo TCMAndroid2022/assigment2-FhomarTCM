@@ -33,7 +33,7 @@ public class DatabaseController {
     public LiveData<List<Player>> getAllPlayers() {
         return allPlayers;
     }
-    public LiveData<List<Player>> getPlayerByNickname(String nickname) {
+    public LiveData<Player> getPlayerByNickname(String nickname) {
         return applicationDAO.findPlayerByNickname(nickname);
     }
 

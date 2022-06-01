@@ -25,7 +25,7 @@ public interface ApplicationDAO {
     LiveData<List<Player>> getAllPlayers();
 
     @Query("SELECT * FROM Player WHERE nickname = :nickname")
-    LiveData<List<Player>> findPlayerByNickname(String nickname);
+    LiveData<Player> findPlayerByNickname(String nickname);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addPlayer(Player player);
