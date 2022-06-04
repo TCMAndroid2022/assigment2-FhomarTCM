@@ -45,7 +45,7 @@ public class DatabaseController {
         new insertAsync(applicationDAO).execute(game);
     }
 
-    public void setPlayer(String nickname, int games, int totalPoints) {
+    public void setPlayer(String nickname, int games, double totalPoints) {
         Player player = new Player();
         player.setNickname(nickname);
         player.setGames(games);

@@ -1,10 +1,14 @@
 package cat.tecnocampus.mobileapps.practica2.HomarMasachsFrancescMeninoSuredaPau;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +19,7 @@ public class RankActivity extends AppCompatActivity implements Adapter.OnNoteLis
 
     static Adapter adapter;
     RecyclerView recyclerView;
-    List<Player> players;
+    List<Player> players = new ArrayList<Player>();
     ApplicationViewModel applicationViewModel;
 
     @Override
@@ -23,15 +27,25 @@ public class RankActivity extends AppCompatActivity implements Adapter.OnNoteLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
 
-        applicationViewModel = new ApplicationViewModel(getApplication());
         recyclerView = findViewById(R.id.ranking);
-        players = new ArrayList<Player>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         if (adapter==null){
             adapter = new Adapter(this, players, this);
         }
 
         recyclerView.setAdapter(adapter);
+
+
+        applicationViewModel = new ApplicationViewModel(getApplication());
+        applicationViewModel.getAllPlayers().observe(this, new Observer<List<Player>>() {
+            @Override
+            public void onChanged(List<Player> players) {
+                adapter.setPlayers(players);
+            }
+        });
+
+
 
 
     }

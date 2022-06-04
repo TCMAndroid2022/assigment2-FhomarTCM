@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.tecnocampus.mobileapps.practica2.HomarMasachsFrancescMeninoSuredaPau.Entities.Player;
@@ -36,8 +37,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.players.setText(players.get(position).getNickname());
-        holder.points.setText(players.get(position).getTotalPoints());
-        holder.games.setText(players.get(position).getGames());
+        holder.points.setText(String.valueOf(players.get(position).getTotalPoints()));
+        holder.games.setText(String.valueOf(players.get(position).getGames()));
     }
 
     @Override
@@ -45,6 +46,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         return players.size();
     }
 
+    public void setPlayers(List<Player> players){
+        this.players = players;
+        notifyDataSetChanged();;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

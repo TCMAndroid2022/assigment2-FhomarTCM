@@ -36,7 +36,7 @@ public class ApplicationViewModel extends AndroidViewModel {
     void insertGame(String nickname, int points){
         repository.setGame(nickname, points);
     }
-    void insertPlayer(String nickname, int games, int totalPoints){
+    void insertPlayer(String nickname, int games, double totalPoints){
         repository.setPlayer(nickname, games, totalPoints);
     }
 }
