@@ -31,4 +31,17 @@ public class Player {
     public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
     }
+
+    @NonNull
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getGames() {
+        return games;
+    }
+
+    public int getTotalPoints() {
+        return totalPoints;
+    }
 }
