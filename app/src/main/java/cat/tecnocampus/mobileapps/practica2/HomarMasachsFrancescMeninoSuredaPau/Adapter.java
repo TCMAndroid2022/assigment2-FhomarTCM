@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -21,9 +20,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     List<Player> players;
     OnNoteListener onNoteListener;
 
-    public Adapter(Context context, List<Player> players) {
+    public Adapter(Context context, List<Player> players, OnNoteListener onNoteListener) {
         this.context = context;
         this.players = players;
+        this.onNoteListener = onNoteListener;
     }
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
@@ -65,7 +65,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
         @Override
         public void onClick(View v) {
-            //onNoteListener.onNoteClick(getBindingAdapterPosition());
+            onNoteListener.onNoteClick(getBindingAdapterPosition());
         }
     }
 

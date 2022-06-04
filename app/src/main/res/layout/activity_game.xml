@@ -13,6 +13,7 @@
         android:layout_marginStart="156dp"
         android:layout_marginTop="200dp"
         android:text="Button"
+        android:onClick="pushData"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

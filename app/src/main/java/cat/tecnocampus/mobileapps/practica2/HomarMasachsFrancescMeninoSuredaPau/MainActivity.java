@@ -31,12 +31,16 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText nicknameText;
     private Button playButton;
+    private ApplicationViewModel applicationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        applicationViewModel = new ApplicationViewModel(getApplication());
+        applicationViewModel.insertPlayer("Juan", 23, 24);
+        applicationViewModel.getPlayerByNickname("Juan");
 
         nicknameText = findViewById(R.id.nicknamePlainText);
         playButton = findViewById(R.id.playButton);
