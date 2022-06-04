@@ -16,7 +16,7 @@ public class Game {
     public String nickname;
 
     @ColumnInfo(name = "points")
-    public int points;
+    public double points;
 
     public void setId(int id) {
         this.id = id;
@@ -26,7 +26,19 @@ public class Game {
         this.nickname = nickname;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(double points) {
         this.points = points;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public double getPoints() {
+        return points;
     }
 }

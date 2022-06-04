@@ -38,7 +38,7 @@ public class DatabaseController {
     }
 
 
-    public void setGame(String nickname, int points) {
+    public void setGame(String nickname, double points) {
         Game game = new Game();
         game.setNickname(nickname);
         game.setPoints(points);

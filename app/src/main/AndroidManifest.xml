@@ -17,9 +17,13 @@
         android:theme="@style/Theme.Assignment2FhomarTCMPmenino"
         tools:targetApi="31">
         <activity
+            android:name=".GameListActivity"
+            android:exported="false"
+            android:parentActivityName=".RankActivity"/>
+        <activity
             android:name=".RankActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".GameActivity"
             android:exported="false"

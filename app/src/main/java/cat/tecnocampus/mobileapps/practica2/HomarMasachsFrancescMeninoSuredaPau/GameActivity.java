@@ -19,9 +19,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import java.text.Collator;
+import java.util.List;
 
 import org.json.JSONObject;
 
+import cat.tecnocampus.mobileapps.practica2.HomarMasachsFrancescMeninoSuredaPau.Entities.Game;
 import cat.tecnocampus.mobileapps.practica2.HomarMasachsFrancescMeninoSuredaPau.Entities.Player;
 
 public class GameActivity extends AppCompatActivity {
@@ -36,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
     int introducedChars;
     EditText enterSolutionET;
     boolean fullWordFailed = false;
+    boolean alreadyChanged = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,21 +131,39 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setData(){
-        Player pl;
+
+        alreadyChanged = false;
         LiveData<Player> playerLD = applicationViewModel.getPlayerByNickname(nickname);
-        if (playerLD.getValue() != null){
-            pl = playerLD.getValue();
-            System.out.println("Yo ya existia");
-        }else{
-            pl = new Player();
-            System.out.println("Y no existia");
-        }
 
-        pl.setNickname(nickname);
-        pl.setGames(pl.getGames() + 1);
-        pl.setTotalPoints(pl.getTotalPoints() + checkPoints());
+        playerLD.observe(this, new Observer<Player>() {
+            @Override
+            public void onChanged(Player player) {
+                if(!alreadyChanged){
+                    if(player != null){
+                        player.setNickname(nickname);
+                        player.setGames(player.getGames() + 1);
+                        player.setTotalPoints(player.getTotalPoints() + checkPoints());
 
-        applicationViewModel.insertPlayer(pl.getNickname(), pl.getGames(), pl.getTotalPoints());
+                        applicationViewModel.insertPlayer(player.getNickname(), player.getGames(), player.getTotalPoints());
+                        alreadyChanged = true;
+                    }else{
+                        player = new Player();
+                        player.setNickname(nickname);
+                        player.setGames(player.getGames() + 1);
+                        player.setTotalPoints(player.getTotalPoints() + checkPoints());
+
+                        applicationViewModel.insertPlayer(player.getNickname(), player.getGames(), player.getTotalPoints());
+                        alreadyChanged = true;
+                    }
+                    Game game = new Game();
+                    game.setNickname(nickname);
+                    game.setPoints(checkPoints());
+                    applicationViewModel.insertGame(game.getNickname(), game.getPoints());
+                }
+
+
+            }
+        });
 
     }
 

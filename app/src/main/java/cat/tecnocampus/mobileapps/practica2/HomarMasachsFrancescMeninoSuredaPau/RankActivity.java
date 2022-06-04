@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ public class RankActivity extends AppCompatActivity implements Adapter.OnNoteLis
 
     static Adapter adapter;
     RecyclerView recyclerView;
-    List<Player> players = new ArrayList<Player>();
+    static List<Player> players = new ArrayList<Player>();
     ApplicationViewModel applicationViewModel;
 
     @Override
@@ -40,8 +41,9 @@ public class RankActivity extends AppCompatActivity implements Adapter.OnNoteLis
         applicationViewModel = new ApplicationViewModel(getApplication());
         applicationViewModel.getAllPlayers().observe(this, new Observer<List<Player>>() {
             @Override
-            public void onChanged(List<Player> players) {
-                adapter.setPlayers(players);
+            public void onChanged(List<Player> playersChang) {
+                adapter.setPlayers(playersChang);
+                players = playersChang;
             }
         });
 
@@ -52,6 +54,8 @@ public class RankActivity extends AppCompatActivity implements Adapter.OnNoteLis
 
     @Override
     public void onNoteClick(int position) {
-
+        Intent intent = new Intent(this, GameListActivity.class);
+        intent.putExtra("nickname", players.get(position).getNickname());
+        startActivity(intent);
     }
 }

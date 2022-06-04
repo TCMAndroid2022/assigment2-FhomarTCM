@@ -21,7 +21,7 @@ public interface ApplicationDAO {
     @Query("SELECT * FROM Game WHERE nickname = :nickname")
     LiveData<List<Game>> findGameByNickname(String nickname);
 
-    @Query("SELECT * FROM Player")
+    @Query("SELECT * FROM Player ORDER BY total_points DESC")
     LiveData<List<Player>> getAllPlayers();
 
     @Query("SELECT * FROM Player WHERE nickname = :nickname")
