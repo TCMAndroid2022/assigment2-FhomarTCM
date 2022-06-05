@@ -8,4 +8,5 @@
     <string name="winnerText">Winner!!!</string>
     <string name="points">Your points</string>
     <string name="failText">Failed!!!</string>
+    <string name="WelcomeText">Welcome! Please enter your nickname before starting the game</string>
 </resources>

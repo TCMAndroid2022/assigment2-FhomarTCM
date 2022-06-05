@@ -1,2 +1,2 @@
-Francesc Homar
-Pau Menino
+Francesc Homar Masachs
+Pau Menino Sureda
